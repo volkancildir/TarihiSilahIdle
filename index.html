@@ -74,47 +74,58 @@ function line(x1,y1,x2,y2,color,width){ctx.strokeStyle=color;ctx.lineWidth=width
 function drawTree(o,i){const sway=Math.sin(performance.now()/900+i*1.8)*2.2;ellipse(o.x+2,o.y+34,39,12,'#173a2c55');rounded(o.x-12,o.y-9,24,47,5,'#70452c');rounded(o.x-7,o.y-8,7,39,3,'#9a6740');line(o.x,o.y+8,o.x-20,o.y-10,'#805131',8);line(o.x+1,o.y+5,o.x+20,o.y-17,'#805131',7);ellipse(o.x+sway,o.y-28,40,41,'#1e5938');ellipse(o.x-21+sway,o.y-19,27,29,'#2c7745');ellipse(o.x+20+sway,o.y-18,27,28,'#1d6039');ellipse(o.x-4+sway,o.y-48,24,25,'#3b8d4b');ellipse(o.x+12+sway,o.y-35,20,21,'#57a957');ellipse(o.x-19+sway,o.y-34,15,16,'#60b760');ellipse(o.x+3+sway,o.y-12,15,13,'#2c7744');ellipse(o.x-8+sway,o.y-40,8,8,'#8bce6b');ellipse(o.x+20+sway,o.y-24,7,7,'#79c96a');ellipse(o.x-2+sway,o.y-56,7,7,'#9dd879')}
 function drawRock(o,i){ellipse(o.x+3,o.y+20,40,12,'#172a2455');ctx.fillStyle=o.type===2?'#9c6035':'#64756d';ctx.beginPath();ctx.moveTo(o.x-37,o.y+10);ctx.lineTo(o.x-31,o.y-11);ctx.lineTo(o.x-13,o.y-30);ctx.lineTo(o.x+9,o.y-34);ctx.lineTo(o.x+31,o.y-15);ctx.lineTo(o.x+38,o.y+7);ctx.lineTo(o.x+19,o.y+19);ctx.closePath();ctx.fill();ctx.fillStyle=o.type===2?'#c58b4b':'#89988a';ctx.beginPath();ctx.moveTo(o.x-31,o.y-11);ctx.lineTo(o.x-13,o.y-30);ctx.lineTo(o.x+9,o.y-34);ctx.lineTo(o.x+1,o.y-8);ctx.lineTo(o.x-19,o.y+1);ctx.closePath();ctx.fill();ctx.fillStyle=o.type===2?'#744a2e':'#4f6259';ctx.beginPath();ctx.moveTo(o.x+1,o.y-8);ctx.lineTo(o.x+9,o.y-34);ctx.lineTo(o.x+31,o.y-15);ctx.lineTo(o.x+38,o.y+7);ctx.lineTo(o.x+19,o.y+19);ctx.closePath();ctx.fill();line(o.x-25,o.y-8,o.x-12,o.y-21,'#c7d0b7',3);line(o.x-5,o.y+3,o.x+2,o.y-9,'#a9b8a0',3);if(o.type===2){line(o.x+4,o.y-21,o.x+14,o.y+7,'#f4c56d',5);line(o.x+15,o.y-16,o.x+25,o.y+2,'#ffe4a0',4);line(o.x-3,o.y-6,o.x+7,o.y+12,'#d69b4d',3)}}
 function drawWorkshop(){
- // Tamamen açık hava demirci alanı: çit, kapalı bina ve çatı yok.
+ // Görsel referansa yakın, tamamen açık hava ortaçağ idle atölyesi.
  const grad=(x,y,w,hh,a,b)=>{const g=ctx.createLinearGradient(x,y,x+w,y+hh);g.addColorStop(0,a);g.addColorStop(1,b);return g};
- ctx.fillStyle=grad(0,0,W,H,'#91bb6b','#5a884b');ctx.fillRect(0,0,W,H);
- // Çim dokusu ve açık alan bitkileri
- for(let i=0;i<145;i++){const x=(i*173+29)%W,y=(i*127+21)%H;ellipse(x,y,18+(i%4)*5,5+(i%3)*2,'#355d3538');line(x,y,x+2,y-5-(i%4),'#477b3d',1.5)}
- for(let i=0;i<28;i++){const x=(i*211+45)%W,y=(i*157+55)%H;ellipse(x,y+7,24,8,'#294d3045');ellipse(x-8,y,15,14,'#326a3c');ellipse(x+5,y-7,18,17,'#43804a');ellipse(x+14,y+1,12,12,'#2d6138');ellipse(x+1,y-12,7,6,'#5b9850')}
- // Ortada sınırları olmayan taş ve toprak çalışma zemini
- ctx.fillStyle='#9d8059';ctx.beginPath();ctx.moveTo(105,255);ctx.quadraticCurveTo(310,206,500,245);ctx.quadraticCurveTo(770,205,1010,258);ctx.lineTo(1060,520);ctx.quadraticCurveTo(800,575,590,535);ctx.quadraticCurveTo(300,570,135,510);ctx.closePath();ctx.fill();
- ctx.fillStyle=grad(120,230,850,300,'#d2b98a','#b49a6b');ctx.beginPath();ctx.moveTo(120,260);ctx.quadraticCurveTo(320,220,500,253);ctx.quadraticCurveTo(770,215,1000,263);ctx.lineTo(1038,504);ctx.quadraticCurveTo(790,552,590,520);ctx.quadraticCurveTo(320,550,153,500);ctx.closePath();ctx.fill();
- for(let row=0;row<8;row++){const y=274+row*31;line(155,y,1015,y,'#8c704f55',1);for(let col=0;col<9;col++){const x=155+col*100+((row%2)*35);line(x,y,x-8,y+30,'#8c704f48',1)}}
- for(let i=0;i<58;i++){const x=(i*149+167)%850+160,y=(i*83+265)%245+265;ellipse(x,y,2+(i%3),1.5,'#785d3d45')}
- // Solda açık ocak ve örs; duvar, kapı veya çatı yok
- ellipse(267,431,105,20,'#493b2c40');
- // Ocak taşları
- rounded(192,350,151,83,9,'#786a57');rounded(202,357,131,66,7,grad(202,357,130,65,'#b9a58a','#746553'));
- for(let i=0;i<5;i++){const x=207+(i%3)*40,y=363+Math.floor(i/3)*24;rounded(x,y,34,18,4,'#8d7b64');line(x+4,y+5,x+25,y+5,'#c8b69b',2)}
- rounded(226,377,82,48,5,'#40352e');rounded(234,384,66,37,4,'#282b29');ellipse(267,411,28,12,'#ed7132');ellipse(267,406,18,10,'#ffb43e');ellipse(267,402,9,8,'#ffe18a');ellipse(267,399,3,5,'#fff5c7');
- // Ocak üstünde duman ve sıcak hava
- ctx.globalAlpha=.16;ellipse(267,388,48,38,'#ff9c3d');ctx.globalAlpha=1;
- line(305,348,305,367,'#69452c',4);ellipse(305,342,7,11,'#ff9b37');ellipse(305,339,3,6,'#ffe8a0');
- // Bağımsız örs tezgâhı
- ellipse(440,440,95,15,'#493b2c38');rounded(380,390,120,17,4,'#64422c');rounded(391,406,98,36,4,'#8b5a36');rounded(400,409,80,26,3,grad(400,409,0,26,'#b47b48','#70432b'));
- for(let x=405;x<478;x+=18)line(x,414,x,434,'#68432c',2);
- rounded(408,381,63,13,3,grad(408,381,0,13,'#dce3df','#59656a'));rounded(423,394,32,21,3,grad(423,394,32,0,'#8c989b','#394449'));rounded(413,414,52,7,2,'#42494a');
- line(455,359,476,379,'#72482d',7);line(447,352,469,344,'#6a7477',12);line(447,352,469,344,'#c5cecf',5);line(450,349,464,344,'#f7ffff',2);
- // Açıkta duran silah teşhir rafı; üstü tamamen açık
- ellipse(810,438,135,18,'#493b2c38');rounded(687,313,248,112,6,'#593923');rounded(696,306,230,110,5,grad(696,306,230,100,'#b47a45','#70462d'));
- rounded(707,318,208,82,3,'#493a2d');rounded(713,324,196,70,2,grad(713,324,196,0,'#584330','#2e2c27'));
- rounded(700,339,222,8,2,'#d4a15f');rounded(700,384,222,9,2,'#c28a4c');rounded(700,306,222,9,2,'#e2b66e');
- for(let i=0;i<4;i++){const x=738+i*49;line(x,328,x,373,'#303b3e',6);line(x-1,329,x-1,370,'#aebdc1',3);line(x-8,335,x+7,335,'#dbe3e3',5);line(x-5,373,x+4,373,'#9b6b42',5);line(x-1,330,x-1,363,'#f8ffff',1)}
- // Malzeme tezgâhı ve açıkta duran odunlar
- ellipse(565,519,93,14,'#4c38283a');rounded(505,450,118,69,5,'#654127');rounded(513,458,102,53,4,grad(513,458,102,50,'#c18b4c','#86542e'));rounded(509,473,110,9,2,'#70452b');rounded(518,460,8,49,2,'#e0b36b');rounded(602,460,8,49,2,'#70452b');line(515,484,615,484,'#d6a05c',2);
- for(let i=0;i<5;i++){const x=500+(i%3)*26,y=537+Math.floor(i/3)*11;rounded(x,y,31,9,4,'#80502e');ellipse(x+2,y+4,4,4,'#d9a56b');ellipse(x+2,y+4,2,2,'#704329')}
- // Tabelalar zemine yakın bağımsız ahşap direklerde; kapalı yapı oluşturmaz
- rounded(196,316,143,27,5,'#493126');rounded(201,320,133,19,3,'#d6ad68');ctx.fillStyle='#503522';ctx.font='900 13px system-ui';ctx.textAlign='center';ctx.fillText('DEMİRCİ OCAĞI',267,334);
- line(198,344,198,362,'#70452d',5);line(337,344,337,362,'#70452d',5);
- rounded(729,275,165,24,5,'#493126');rounded(734,279,155,16,3,'#d6ad68');ctx.font='900 13px system-ui';ctx.fillText('SİLAH DÜKKÂNI',811,291);
- line(739,299,739,314,'#70452d',4);line(884,299,884,314,'#70452d',4);
- rounded(511,519,105,21,4,'#523723');ctx.fillStyle='#f4e1b8';ctx.font='bold 11px system-ui';ctx.fillText('HAM MADDE',563,533);
- ctx.textAlign='start';
- const shade=ctx.createRadialGradient(W*.5,H*.45,90,W*.5,H*.5,Math.max(W,H)*.8);shade.addColorStop(0,'#ffffff00');shade.addColorStop(1,'#1b2e2020');ctx.fillStyle=shade;ctx.fillRect(0,0,W,H);
+ ctx.fillStyle=grad(0,0,W,H,'#719e55','#3c6b40');ctx.fillRect(0,0,W,H);
+ for(let i=0;i<260;i++){let x=(i*173+31)%W,y=(i*127+17)%H;ellipse(x,y,12+(i%4)*5,4+(i%3)*2,i%2?'#2d5a352b':'#c2d17a25');line(x,y,x+2,y-4-(i%4),'#3f733d',1.5)}
+ for(let i=0;i<38;i++){let x=(i*211+43)%W,y=(i*157+28)%H;ellipse(x,y+8,25,9,'#203e2c55');ellipse(x-9,y,15,13,'#285a35');ellipse(x+5,y-7,18,17,'#387442');ellipse(x+14,y+1,12,11,'#2b6138');ellipse(x-1,y-12,8,7,'#4a8546');if(i%3===0)ellipse(x+10,y-13,2,2,'#f2d98d')}
+ // Dere ve kayalık kıyı sol alt köşede
+ ctx.fillStyle='#354a37';ctx.beginPath();ctx.moveTo(0,515);ctx.quadraticCurveTo(80,480,123,545);ctx.quadraticCurveTo(175,620,240,720);ctx.lineTo(0,720);ctx.closePath();ctx.fill();
+ ctx.fillStyle=grad(0,530,230,190,'#55a8b0','#1e657d');ctx.beginPath();ctx.moveTo(0,544);ctx.quadraticCurveTo(70,510,120,560);ctx.quadraticCurveTo(172,620,236,720);ctx.lineTo(0,720);ctx.closePath();ctx.fill();
+ for(let i=0;i<17;i++){let x=(i*43)%220,y=552+(i*37)%160;line(x,y,x+17,y-3,'#b6e0d9a0',1.5)}
+ for(let i=0;i<14;i++){let x=(i*53)%235,y=520+(i*41)%200;ellipse(x,y+4,14+(i%3)*4,8,'#253d32');ellipse(x-2,y,12+(i%3)*4,7,'#858b7a')}
+ // Açık orta yol; çit yalnızca arka ve iki kenarda, geçiş tamamen açık
+ ctx.fillStyle='#735a3b';ctx.beginPath();ctx.moveTo(658,-10);ctx.quadraticCurveTo(594,100,650,200);ctx.quadraticCurveTo(733,320,644,420);ctx.quadraticCurveTo(562,520,652,730);ctx.lineTo(914,730);ctx.quadraticCurveTo(810,580,866,470);ctx.quadraticCurveTo(925,335,816,210);ctx.quadraticCurveTo(740,110,824,-10);ctx.closePath();ctx.fill();
+ ctx.fillStyle=grad(640,0,260,720,'#cdb487','#a08358');ctx.beginPath();ctx.moveTo(674,-10);ctx.quadraticCurveTo(620,100,676,202);ctx.quadraticCurveTo(755,320,667,420);ctx.quadraticCurveTo(588,520,678,730);ctx.lineTo(890,730);ctx.quadraticCurveTo(797,580,844,470);ctx.quadraticCurveTo(899,335,794,210);ctx.quadraticCurveTo(718,110,801,-10);ctx.closePath();ctx.fill();
+ for(let i=0;i<95;i++){let x=605+(i*67)%300,y=(i*89+21)%710;ellipse(x,y,2+(i%3),1.5,'#765b3b55')}
+ // Arka çit ve odun istifi
+ for(let x=345;x<905;x+=40){rounded(x,67+(x%3)*2,9,38,3,'#503622');rounded(x-2,65+(x%3)*2,13,6,2,'#b28a52')}
+ rounded(337,75,576,8,3,'#79512f');rounded(337,87,576,7,3,'#a77842');
+ ellipse(575,153,130,22,'#263b2a55');
+ for(let i=0;i<10;i++){let x=464+(i%4)*30,y=110+Math.floor(i/4)*17;rounded(x,y,65,15,7,'#68452a');ellipse(x+5,y+7,7,7,'#d2a16a');ellipse(x+5,y+7,3,3,'#835733');line(x+17,y+3,x+55,y+3,'#b77d48',2)}
+ for(let i=0;i<5;i++){let x=596+i*10,y=143-i*2;rounded(x,y,58,12,6,'#79502d');ellipse(x+5,y+6,5,5,'#d5a66f')}
+ line(700,154,741,182,'#63432c',5);rounded(698,128,54,25,4,'#8a6038');rounded(704,132,42,16,3,'#bd8c51');ellipse(744,181,9,9,'#3d3a30');
+ // Açık taş ocağı solda
+ ellipse(277,376,112,22,'#202e2655');rounded(202,287,147,99,8,'#62584a');rounded(212,293,127,86,7,grad(212,293,127,80,'#b7aa91','#5e5b50'));
+ for(let r=0;r<4;r++)for(let c=0;c<3;c++){let x=216+c*39+(r%2)*7,y=300+r*18;rounded(x,y,33,14,3,['#958b77','#a99b83','#777568'][(r+c)%3]);line(x+3,y+3,x+23,y+3,'#d0c2a4',1)}
+ rounded(232,337,89,45,5,'#302b26');rounded(240,343,73,36,4,'#252b29');ellipse(276,369,30,14,'#e65e24');ellipse(276,364,20,12,'#ff9a2f');ellipse(276,359,11,9,'#ffe06d');ellipse(276,356,4,5,'#fff2bd');
+ ctx.globalAlpha=.14;ellipse(279,322,28,19,'#d9ded2');ellipse(291,301,22,17,'#d9ded2');ellipse(278,283,18,13,'#d9ded2');ctx.globalAlpha=1;
+ rounded(349,368,25,30,4,'#6a482d');rounded(352,364,19,8,3,'#bd8b4f');ellipse(361,367,9,4,'#272a26');
+ // Örs, çekiç ve çalışma sehpası
+ ellipse(420,440,87,17,'#263b2a50');rounded(366,391,110,16,4,'#68442a');rounded(378,405,87,39,4,'#80502f');rounded(385,408,72,30,3,grad(385,408,72,0,'#b47b48','#704329'));
+ for(let x=390;x<454;x+=17)line(x,415,x,437,'#68432c',2);
+ rounded(392,383,61,13,3,grad(392,383,0,13,'#d8e0df','#566368'));rounded(407,396,31,22,3,grad(407,396,31,0,'#9ba8aa','#3b4549'));rounded(397,417,50,7,2,'#42494a');
+ line(447,362,468,382,'#70482d',7);line(439,355,461,347,'#687579',12);line(439,355,461,347,'#c6d0d1',5);line(442,352,456,347,'#f7ffff',2);
+ // Silah rafı ve sancak
+ ellipse(525,342,76,13,'#263b2a45');rounded(474,267,112,14,4,'#5a3b27');rounded(481,279,9,69,3,'#835831');rounded(572,279,9,69,3,'#835831');rounded(478,305,103,8,3,'#a77842');rounded(478,342,103,9,3,'#8a5b34');
+ for(let i=0;i<6;i++){let x=490+i*15;line(x,285,x,334,'#353d3e',5);line(x-5,292,x+5,292,'#d4dfe0',4);line(x,288,x,327,'#aebfc1',2);line(x-4,332,x+4,332,'#986b42',4)}
+ line(603,280,603,344,'#5b402a',4);ctx.fillStyle='#3c7591';ctx.beginPath();ctx.moveTo(605,282);ctx.lineTo(641,291);ctx.lineTo(641,330);ctx.lineTo(605,320);ctx.closePath();ctx.fill();line(617,296,628,310,'#a9c5c7',2);line(628,310,617,316,'#a9c5c7',2);
+ // Sol alt odun istifi ve kısa çit parçası
+ for(let x=88;x<310;x+=42){rounded(x,439,9,33,3,'#4b3424');rounded(x-2,437,13,6,2,'#b28a52')}rounded(85,446,230,8,3,'#79512f');rounded(85,458,230,7,3,'#a77842');
+ ellipse(185,507,90,16,'#20382c50');for(let i=0;i<8;i++){let x=107+(i%4)*28,y=466+Math.floor(i/4)*20;rounded(x,y,57,15,7,'#80512e');ellipse(x+6,y+7,7,7,'#d4a06b');ellipse(x+6,y+7,3,3,'#76502f');line(x+17,y+3,x+48,y+3,'#b47b43',2)}
+ // Sağda raf ve malzeme tezgâhı
+ for(let x=916;x<1110;x+=42){rounded(x,348,9,33,3,'#4b3424');rounded(x-2,346,13,6,2,'#b28a52')}rounded(912,355,202,8,3,'#79512f');rounded(912,367,202,7,3,'#a77842');
+ ellipse(994,432,91,15,'#263b2a45');rounded(936,374,111,13,4,'#5b3d28');rounded(945,386,9,72,3,'#835831');rounded(1030,386,9,72,3,'#835831');rounded(939,413,103,8,3,'#a77842');
+ for(let i=0;i<4;i++){let x=950+i*21;rounded(x,392,15,17,3,'#8b633d');rounded(x+3,395,9,10,2,'#c0a06d')}
+ rounded(1012,453,66,48,5,'#644127');rounded(1018,459,54,34,3,'#ad7b42');rounded(1014,471,62,7,2,'#70452b');
+ // Alt sağda taş ve bakır cevheri kasaları
+ ellipse(966,590,120,18,'#20382c55');rounded(858,552,101,57,5,'#654127');rounded(865,558,87,43,4,'#bd8b50');rounded(862,572,94,8,2,'#70452b');
+ for(let i=0;i<8;i++){let x=870+(i%4)*18,y=562+Math.floor(i/4)*15;ellipse(x,y,10,8,'#8e9692');ellipse(x-2,y-2,5,3,'#d9e1dd')}
+ rounded(971,568,103,58,5,'#654127');rounded(978,574,89,44,4,'#b77e43');rounded(975,588,95,8,2,'#70452b');
+ for(let i=0;i<8;i++){let x=984+(i%4)*18,y=578+Math.floor(i/4)*15;ellipse(x,y,10,8,'#a85c32');ellipse(x-2,y-2,5,3,'#e7a05a')}
+ // Hedef tahtası üst sağ
+ line(855,184,855,239,'#67452c',5);ellipse(855,190,16,16,'#72513a');ellipse(855,190,11,11,'#d4c09a');ellipse(855,190,6,6,'#a94e3d');ellipse(855,190,2,2,'#f3e5c5');
+ const shade=ctx.createRadialGradient(W*.5,H*.45,100,W*.5,H*.5,Math.max(W,H)*.78);shade.addColorStop(0,'#ffffff00');shade.addColorStop(1,'#152b1d42');ctx.fillStyle=shade;ctx.fillRect(0,0,W,H);
 }
 function drawGround(camX,camY){
  ctx.fillStyle='#78ad58';ctx.fillRect(0,0,W,H);
