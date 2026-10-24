@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<title>Örs Dükkanı</title>
+<title>Demirci Dükkanı</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@ button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 </head>
 <body>
 <main class="game">
-<header class="top"><h1>Örs Dükkanı</h1><div class="purse"><svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#e2a93b" stroke="#9a6a14"/><circle cx="8" cy="8" r="4.2" fill="none" stroke="#9a6a14" stroke-width="1.2"/></svg><span id="gold" class="gold">0</span><span id="rate" class="rate"></span></div></header>
+<header class="top"><h1>Demirci Dükkanı</h1><div class="purse"><svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#e2a93b" stroke="#9a6a14"/><circle cx="8" cy="8" r="4.2" fill="none" stroke="#9a6a14" stroke-width="1.2"/></svg><span id="gold" class="gold">0</span><span id="rate" class="rate"></span></div></header>
 <div class="layout"><section class="stage" aria-label="Dükkan"><div class="frame"><canvas id="cv" role="img" aria-label="Demirci dükkanı: ocaklar, tezgah ve bekleyen müşteriler"></canvas><div id="toast" class="toast" hidden></div></div><p id="hint" class="hint" aria-live="polite"></p><dl class="stats"><div><dt>Satılan</dt><dd id="st-served">0</dd></div><div><dt>Kaçan müşteri</dt><dd id="st-lost">0</dd></div><div><dt>Toplam kazanç</dt><dd id="st-total">0</dd></div></dl><section class="retention"><div class="ret-head"><h2 id="stage-name">Küçük Demirci</h2><span id="prestige-count">Ustalık 0</span></div><p id="stage-desc">Dükkanını büyüt, daha değerli silahlar üret.</p><div class="quest-title">Günlük hedefler</div><div id="quests" class="quests"></div><button id="prestige" class="ghost prestige" type="button" disabled>Usta Ocağına Geç · 5.000 toplam altın</button></section></section><section class="shop" id="shop" aria-label="Geliştirmeler"></section></div>
 <footer class="foot"><button id="reset" class="ghost" type="button">Oyunu sıfırla</button><span id="reset-ask" hidden>Tüm ilerleme silinecek. <button id="reset-yes" class="ghost warn" type="button">Evet, sil</button> <button id="reset-no" class="ghost" type="button">Vazgeç</button></span></footer>
 </main>
