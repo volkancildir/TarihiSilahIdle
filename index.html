@@ -35,8 +35,7 @@ function drawPlayer(px,py){ellipse(px,py+16,21,8,'#14281e66');const bob=Math.sin
 function drawWorld(){ctx.clearRect(0,0,cw,ch);const viewW=cw/scale,viewH=ch/scale;const camX=Math.max(0,Math.min(W-viewW,x-viewW/2)),camY=Math.max(0,Math.min(H-viewH,y-viewH/2));ctx.save();ctx.scale(scale,scale);ctx.translate(-camX,-camY);
 let g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#7aa65e');g.addColorStop(1,'#3c7043');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
 for(let i=0;i<180;i++){const gx=(i*137+21)%W,gy=(i*89+31)%H;ellipse(gx,gy,8+(i%4)*3,3+(i%3),i%2?'#b8cf7733':'#204e302b')}
-round(270,95,500,145,18,'#674a32');round(286,110,468,128,12,'#b48a55');round(305,128,430,105,8,'#704f35');round(335,145,370,72,5,'#d3b47d');round(380,155,240,52,5,'#725137');
-for(let i=0;i<11;i++)round(300+i*39,114,6,118,2,'#785537');
+
 ctx.save();ctx.translate(80,-110);drawForge();ctx.restore();ctx.save();ctx.translate(-250,0);drawCustomer();ctx.restore();drawPlayer(x,y);
 if(phase==='forge'&&Math.hypot(x-500,y-300)<90){text('🔥',500,170,32,'#fff0a0')}
 ctx.restore()}
