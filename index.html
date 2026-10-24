@@ -74,36 +74,60 @@ function line(x1,y1,x2,y2,color,width){ctx.strokeStyle=color;ctx.lineWidth=width
 function drawTree(o,i){const sway=Math.sin(performance.now()/900+i*1.8)*2.2;ellipse(o.x+2,o.y+34,39,12,'#173a2c55');rounded(o.x-12,o.y-9,24,47,5,'#70452c');rounded(o.x-7,o.y-8,7,39,3,'#9a6740');line(o.x,o.y+8,o.x-20,o.y-10,'#805131',8);line(o.x+1,o.y+5,o.x+20,o.y-17,'#805131',7);ellipse(o.x+sway,o.y-28,40,41,'#1e5938');ellipse(o.x-21+sway,o.y-19,27,29,'#2c7745');ellipse(o.x+20+sway,o.y-18,27,28,'#1d6039');ellipse(o.x-4+sway,o.y-48,24,25,'#3b8d4b');ellipse(o.x+12+sway,o.y-35,20,21,'#57a957');ellipse(o.x-19+sway,o.y-34,15,16,'#60b760');ellipse(o.x+3+sway,o.y-12,15,13,'#2c7744');ellipse(o.x-8+sway,o.y-40,8,8,'#8bce6b');ellipse(o.x+20+sway,o.y-24,7,7,'#79c96a');ellipse(o.x-2+sway,o.y-56,7,7,'#9dd879')}
 function drawRock(o,i){ellipse(o.x+3,o.y+20,40,12,'#172a2455');ctx.fillStyle=o.type===2?'#9c6035':'#64756d';ctx.beginPath();ctx.moveTo(o.x-37,o.y+10);ctx.lineTo(o.x-31,o.y-11);ctx.lineTo(o.x-13,o.y-30);ctx.lineTo(o.x+9,o.y-34);ctx.lineTo(o.x+31,o.y-15);ctx.lineTo(o.x+38,o.y+7);ctx.lineTo(o.x+19,o.y+19);ctx.closePath();ctx.fill();ctx.fillStyle=o.type===2?'#c58b4b':'#89988a';ctx.beginPath();ctx.moveTo(o.x-31,o.y-11);ctx.lineTo(o.x-13,o.y-30);ctx.lineTo(o.x+9,o.y-34);ctx.lineTo(o.x+1,o.y-8);ctx.lineTo(o.x-19,o.y+1);ctx.closePath();ctx.fill();ctx.fillStyle=o.type===2?'#744a2e':'#4f6259';ctx.beginPath();ctx.moveTo(o.x+1,o.y-8);ctx.lineTo(o.x+9,o.y-34);ctx.lineTo(o.x+31,o.y-15);ctx.lineTo(o.x+38,o.y+7);ctx.lineTo(o.x+19,o.y+19);ctx.closePath();ctx.fill();line(o.x-25,o.y-8,o.x-12,o.y-21,'#c7d0b7',3);line(o.x-5,o.y+3,o.x+2,o.y-9,'#a9b8a0',3);if(o.type===2){line(o.x+4,o.y-21,o.x+14,o.y+7,'#f4c56d',5);line(o.x+15,o.y-16,o.x+25,o.y+2,'#ffe4a0',4);line(o.x-3,o.y-6,o.x+7,o.y+12,'#d69b4d',3)}}
 function drawWorkshop(){
- // Basit, okunaklı demirci avlusu: çit, küçük ocak, örs ve silah rafı.
- ctx.fillStyle='#477a43';ctx.fillRect(0,0,W,H);
- for(let i=0;i<18;i++){const x=(i*197+35)%W,y=(i*131+20)%H;ellipse(x,y+8,24,9,'#234a3150');ellipse(x-5,y,16,15,'#285e39');ellipse(x+8,y-6,19,17,'#347443');}
- // Avlu zemini
- rounded(135,150,930,430,12,'#c7a06a');
- rounded(150,165,900,400,10,'#d7b77f');
- for(let i=0;i<28;i++){const x=180+(i*137)%820,y=190+(i*83)%330;ellipse(x,y,2,1.5,'#9b754c55')}
- // Basit ahşap çit
- for(let x=130;x<=1070;x+=48){rounded(x,138,9,35,2,'#70452d');rounded(x-2,138,13,5,2,'#c89a5f');rounded(x,565,9,30,2,'#70452d')}
- rounded(130,145,940,8,3,'#a97848');rounded(130,160,940,7,3,'#8d5e39');rounded(130,575,390,7,3,'#a97848');rounded(700,575,370,7,3,'#a97848');
- for(let y=180;y<=555;y+=45){rounded(125,y,9,30,2,'#70452d');rounded(1066,y,9,30,2,'#70452d')}
- rounded(125,180,7,375,3,'#a97848');rounded(1068,180,7,375,3,'#a97848');
- // Küçük demirci sundurması
- ellipse(330,390,185,28,'#62442b44');rounded(190,265,280,145,8,'#80503a');rounded(202,277,256,122,5,'#b67b4b');
- ctx.fillStyle='#5d3b2e';ctx.beginPath();ctx.moveTo(170,278);ctx.lineTo(330,190);ctx.lineTo(490,278);ctx.closePath();ctx.fill();
- ctx.fillStyle='#bd8650';ctx.beginPath();ctx.moveTo(180,272);ctx.lineTo(330,195);ctx.lineTo(480,272);ctx.closePath();ctx.fill();
- // Ocak
- rounded(225,315,68,64,5,'#583a30');rounded(234,325,50,45,4,'#302d2a');ellipse(259,360,19,10,'#ed6d32');ellipse(259,356,10,8,'#ffd66c');ellipse(259,355,4,6,'#fff0a3');
- // Örs ve çekiç
- rounded(330,350,70,16,3,'#48565a');rounded(350,366,30,27,3,'#384348');rounded(337,390,56,9,3,'#68452f');
- line(375,320,395,342,'#70452d',7);line(367,315,388,307,'#657177',12);line(368,315,388,307,'#aeb8ba',5);
- // Silah rafı
- rounded(730,285,190,12,3,'#70452d');rounded(730,370,190,12,3,'#70452d');rounded(740,280,9,100,3,'#8d5e39');rounded(902,280,9,100,3,'#8d5e39');
- line(765,300,765,350,'#7b8587',5);line(805,300,805,350,'#7b8587',5);line(845,300,845,350,'#7b8587',5);line(885,300,885,350,'#7b8587',5);
- line(755,300,775,300,'#c5d0d1',7);line(795,300,815,300,'#c5d0d1',7);line(835,300,855,300,'#c5d0d1',7);line(875,300,895,300,'#c5d0d1',7);
- ctx.fillStyle='#5a3929';ctx.font='bold 18px system-ui';ctx.fillText('DEMİRCİ',225,250);
- ctx.fillStyle='#5a3929';ctx.font='bold 16px system-ui';ctx.fillText('SİLAH RAFI',760,260);
- // Malzeme sandığı
- rounded(520,420,92,64,6,'#80502f');rounded(528,428,76,48,4,'#b8864f');rounded(525,444,82,7,2,'#70452d');
- ctx.fillStyle='#5a3929';ctx.font='bold 13px system-ui';ctx.fillText('MALZEME',528,505);
+ // Idle Weapon Shop esintili, gölgeli ve hacimli mobil oyun atölyesi.
+ const grad=(x,y,w,hh,a,b)=>{const g=ctx.createLinearGradient(x,y,x+w,y+hh);g.addColorStop(0,a);g.addColorStop(1,b);return g};
+ ctx.fillStyle=grad(0,0,W,H,'#8fb96a','#527e45');ctx.fillRect(0,0,W,H);
+ // Çimen dokusu ve çevre bitkileri
+ for(let i=0;i<115;i++){const x=(i*173+29)%W,y=(i*127+21)%H;ellipse(x,y,18+(i%4)*5,5+(i%3)*2,'#355d3540');line(x,y,x+2,y-5-(i%4),'#477b3d',1.5)}
+ for(let i=0;i<22;i++){const x=(i*211+45)%W,y=(i*157+55)%H;ellipse(x,y+7,24,8,'#294d3045');ellipse(x-8,y,15,14,'#326a3c');ellipse(x+5,y-7,18,17,'#43804a');ellipse(x+14,y+1,12,12,'#2d6138');ellipse(x+1,y-12,7,6,'#5b9850')}
+ // Taş döşeli geniş avlu
+ ctx.fillStyle='#6e5b43';ctx.beginPath();ctx.moveTo(118,176);ctx.lineTo(1082,176);ctx.lineTo(1082,577);ctx.lineTo(118,577);ctx.closePath();ctx.fill();
+ ctx.fillStyle=grad(120,170,0,420,'#d7c39a','#a88b63');ctx.beginPath();ctx.moveTo(132,178);ctx.lineTo(1068,178);ctx.lineTo(1068,565);ctx.lineTo(132,565);ctx.closePath();ctx.fill();
+ for(let row=0;row<11;row++){const y=190+row*35;line(139,y,1060,y,'#8c704f65',1);for(let col=0;col<9;col++){const x=145+col*103+((row%2)*38);line(x,y,x-9,y+34,'#8c704f50',1)}}
+ for(let i=0;i<65;i++){const x=(i*149+167)%900+150,y=(i*83+205)%340+190;ellipse(x,y,2+(i%3),1.5,'#785d3d45')}
+ // Çit: kalın ahşap kirişler ve dikmeler
+ for(let x=116;x<=1080;x+=43){rounded(x,143,12,43,3,'#573923');rounded(x-2,141,16,8,3,'#b88750');line(x+2,151,x+2,177,'#d0a36a',2);rounded(x,566,12,30,3,'#573923')}
+ rounded(112,151,970,11,4,'#86562f');rounded(112,166,970,9,4,'#b17b43');line(120,154,1073,154,'#d5a46b',2);
+ rounded(112,579,410,9,4,'#8a5b34');rounded(695,579,387,9,4,'#8a5b34');
+ for(let y=185;y<=550;y+=42){rounded(111,y,13,34,3,'#593b26');rounded(1075,y,13,34,3,'#593b26')}
+ rounded(111,183,10,374,3,'#98653a');rounded(1076,183,10,374,3,'#98653a');
+ // Demirci binası: taş temel, ahşap duvar, gölgeli çatı
+ ellipse(330,414,190,25,'#493b2c50');
+ rounded(177,276,307,137,7,'#67452f');rounded(187,270,286,134,5,grad(187,270,286,120,'#b77d4a','#70452f'));
+ for(let y=290;y<397;y+=24){line(191,y,469,y,'#e1ad6d65',2)}
+ for(let x=205;x<466;x+=38){line(x,278,x,402,'#6f482e',2)}
+ // Çatı gölgesi ve kiremitler
+ ctx.fillStyle='#59392b';ctx.beginPath();ctx.moveTo(157,282);ctx.lineTo(330,184);ctx.lineTo(505,282);ctx.lineTo(483,291);ctx.lineTo(330,211);ctx.lineTo(180,291);ctx.closePath();ctx.fill();
+ ctx.fillStyle=grad(170,190,320,90,'#bd7650','#793f31');ctx.beginPath();ctx.moveTo(166,275);ctx.lineTo(330,188);ctx.lineTo(495,275);ctx.lineTo(478,281);ctx.lineTo(330,207);ctx.lineTo(183,281);ctx.closePath();ctx.fill();
+ for(let i=0;i<9;i++){const t=i/9;line(178+t*150,271-t*79,193+t*145,277-t*73,'#d99869',2);line(330+t*145,194+t*77,340+t*145,200+t*75,'#d99869',2)}
+ // Kapı ve sıcak ocak
+ rounded(199,319,54,84,3,'#4d3024');rounded(206,326,40,77,2,'#2b2925');ellipse(226,386,23,8,'#ee7132');ellipse(226,381,15,12,'#ffb43e');ellipse(226,377,8,9,'#ffe18a');ellipse(226,374,3,5,'#fff5c7');
+ // Duvar meşalesi
+ line(269,312,269,336,'#69452c',4);ellipse(269,307,7,11,'#ff9b37');ellipse(269,304,3,6,'#ffe8a0');
+ // Örs masası, metal örs ve çekiç
+ rounded(278,359,112,13,3,'#64422c');rounded(288,371,92,35,3,'#8b5a36');rounded(297,374,74,26,2,grad(297,374,0,26,'#b47b48','#70432b'));
+ for(let x=300;x<370;x+=18)line(x,378,x,397,'#68432c',2);
+ ellipse(332,359,39,5,'#343b3b');rounded(306,345,53,13,3,grad(306,345,0,13,'#dce3df','#59656a'));rounded(319,358,28,21,3,grad(319,358,28,0,'#8c989b','#394449'));rounded(310,378,45,7,2,'#42494a');
+ line(356,322,376,342,'#72482d',7);line(348,315,369,307,'#6a7477',12);line(348,315,369,307,'#c5cecf',5);line(351,312,364,307,'#f7ffff',2);
+ // Silah satış vitrini / raf
+ ellipse(814,407,132,18,'#493b2c45');rounded(690,278,247,112,6,'#593923');rounded(700,270,227,110,5,grad(700,270,227,100,'#b47a45','#70462d'));
+ rounded(710,282,207,82,3,'#493a2d');rounded(716,288,195,70,2,grad(716,288,195,0,'#584330','#2e2c27'));
+ rounded(704,303,220,8,2,'#d4a15f');rounded(704,348,220,9,2,'#c28a4c');rounded(704,270,220,9,2,'#e2b66e');
+ // Raf üzerindeki farklı silahlar, metal parıltılar
+ for(let i=0;i<4;i++){const x=738+i*49;line(x,292,x,337,'#303b3e',6);line(x-1,293,x-1,334,'#aebdc1',3);line(x-8,299,x+7,299,'#dbe3e3',5);line(x-5,337,x+4,337,'#9b6b42',5);line(x-1,294,x-1,327,'#f8ffff',1)}
+ // Sipariş masası ve malzeme sandıkları
+ ellipse(565,493,93,14,'#4c38284a');rounded(505,424,118,69,5,'#654127');rounded(513,432,102,53,4,grad(513,432,102,50,'#c18b4c','#86542e'));rounded(509,447,110,9,2,'#70452b');rounded(518,434,8,49,2,'#e0b36b');rounded(602,434,8,49,2,'#70452b');line(515,458,615,458,'#d6a05c',2);
+ // Odun yığını
+ for(let i=0;i<5;i++){const x=500+(i%3)*26,y=514+Math.floor(i/3)*11;rounded(x,y,31,9,4,'#80502e');ellipse(x+2,y+4,4,4,'#d9a56b');ellipse(x+2,y+4,2,2,'#704329')}
+ // Ocak dumanı / sıcak ışık
+ ctx.globalAlpha=.23;ellipse(226,359,45,40,'#ff9c3d');ctx.globalAlpha=1;
+ // Tabelalar
+ rounded(194,242,136,27,5,'#493126');rounded(199,246,126,19,3,'#d6ad68');ctx.fillStyle='#503522';ctx.font='900 14px system-ui';ctx.textAlign='center';ctx.fillText('DEMİRCİ OCAĞI',262,260);
+ rounded(729,244,165,24,5,'#493126');rounded(734,248,155,16,3,'#d6ad68');ctx.font='900 13px system-ui';ctx.fillText('SİLAH DÜKKÂNI',811,260);
+ rounded(511,493,105,21,4,'#523723');ctx.fillStyle='#f4e1b8';ctx.font='bold 11px system-ui';ctx.fillText('HAM MADDE',563,507);
+ ctx.textAlign='start';
+ // Hafif çevresel gölge, düz/piksel hissini azaltır
+ const shade=ctx.createRadialGradient(W*.5,H*.45,90,W*.5,H*.5,Math.max(W,H)*.8);shade.addColorStop(0,'#ffffff00');shade.addColorStop(1,'#1b2e202e');ctx.fillStyle=shade;ctx.fillRect(0,0,W,H);
 }
 function drawGround(camX,camY){
  ctx.fillStyle='#78ad58';ctx.fillRect(0,0,W,H);
