@@ -14,7 +14,7 @@
 <div id="game">
 <canvas id="world" aria-label="Demirci atölyesi oyun alanı"></canvas>
 <div class="hud"><div><div class="brand">⚒️ Demirci Ustası</div><div class="sub">Kılıcı döv · Müşteriye teslim et</div></div><div class="coins" id="coins">🪙 0 akçe</div></div>
-<div class="hint" id="hint">Ocağa yürü, kılıcı otomatik döv!</div>
+<div class="hint" id="hint">Arkada ocağa yürü; kılıç otomatik dövülsün!</div>
 <div class="controls"><div class="joy" id="joy"><div class="stick" id="stick"></div></div><div class="status" id="status">⚒️ Ocağa git<small>Yaklaşınca otomatik dövülür</small></div></div>
 <div class="toast" id="toast"></div>
 </div>
@@ -22,14 +22,14 @@
 (()=>{
 const canvas=document.getElementById('world'),ctx=canvas.getContext('2d'),$=id=>document.getElementById(id);
 const W=1000,H=700;let cw=0,ch=0,scale=1,joy={x:0,y:0},pointer=null,last=0,walk=0,facing=1,coins=0,stock=0,phase='forge',forgingUntil=0,toastUntil=0,toastText='',saved=false;
-let x=550,y=520;
+let x=650,y=540;
 function resize(){const dpr=Math.min(devicePixelRatio||1,2);cw=innerWidth;ch=innerHeight;canvas.width=Math.round(cw*dpr);canvas.height=Math.round(ch*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);scale=Math.min(cw/760,ch/560);scale=Math.max(.55,Math.min(1.25,scale))}
 addEventListener('resize',resize);resize();
 function round(x,y,w,h,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill()}
 function ellipse(x,y,rx,ry,color){ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.fill()}
 function line(x1,y1,x2,y2,color,w){ctx.strokeStyle=color;ctx.lineWidth=w;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}
 function text(t,x,y,size,color,align='center'){ctx.fillStyle=color;ctx.font='900 '+size+'px system-ui';ctx.textAlign=align;ctx.fillText(t,x,y)}
-function drawForge(){ellipse(420,438,104,26,'#1b3027aa');round(340,360,160,74,15,'#6a5540');round(356,340,128,48,12,'#8e7150');round(371,305,98,47,12,'#3a3931');round(382,316,76,25,8,'#ed8a35');ellipse(420,326,35,14,'#ffbd4c');ellipse(420,323,20,9,'#fff0a0');for(let i=0;i<5;i++)line(363+i*26,370,363+i*26,421,'#b38b5c',5);round(385,430,70,11,4,'#c3a06b');text('DEMİRCİ OCAĞI',420,474,19,'#fff0c9');if(phase==='forge'){line(420,289,420,267,'#fff0a0',5);ellipse(420,258,8,13,'#ffbd4c')}}
+function drawForge(){ellipse(420,438,104,26,'#1b3027aa');round(340,360,160,74,15,'#6a5540');round(356,340,128,48,12,'#8e7150');round(371,305,98,47,12,'#3a3931');round(382,316,76,25,8,'#ed8a35');ellipse(420,326,35,14,'#ffbd4c');ellipse(420,323,20,9,'#fff0a0');for(let i=0;i<5;i++)line(363+i*26,370,363+i*26,421,'#b38b5c',5);round(385,430,70,11,4,'#c3a06b');text('DEMİRCİ OCAĞI',500,364,19,'#fff0c9');if(phase==='forge'){line(420,289,420,267,'#fff0a0',5);ellipse(420,258,8,13,'#ffbd4c')}}
 function drawCustomer(){ellipse(750,510,48,14,'#1b3027aa');round(725,468,50,45,11,'#3b6470');round(719,478,13,31,6,'#d0a66b');round(767,478,13,31,6,'#d0a66b');ellipse(750,451,24,26,'#c98d5d');ellipse(750,432,28,12,'#4b3528');round(723,426,54,12,5,'#65452c');line(739,450,744,451,'#322820',3);line(756,451,761,451,'#322820',3);line(741,462,759,462,'#6d322a',3);text('MÜŞTERİ',750,548,20,'#fff0c9');round(705,557,90,12,5,'#694a2e');round(715,560,70,6,3,'#b78b51')}
 function drawPlayer(px,py){ellipse(px,py+16,21,8,'#14281e66');const bob=Math.sin(walk*10)*2;round(px-13,py-27+bob,26,34,8,'#8a3e35');round(px-11,py-5+bob,9,23,4,'#493c30');round(px+2,py-5+bob,9,23,4,'#493c30');ellipse(px,py-35+bob,13,14,'#d7a16d');round(px-14,py-46+bob,28,9,4,'#43342b');if(phase==='deliver'&&stock>0){line(px+facing*12,py-24,px+facing*38,py-39,'#d7b87b',5);line(px+facing*38,py-39,px+facing*57,py-47,'#e8e9df',5)}}
 function drawWorld(){ctx.clearRect(0,0,cw,ch);const viewW=cw/scale,viewH=ch/scale;const camX=Math.max(0,Math.min(W-viewW,x-viewW/2)),camY=Math.max(0,Math.min(H-viewH,y-viewH/2));ctx.save();ctx.scale(scale,scale);ctx.translate(-camX,-camY);
@@ -37,12 +37,12 @@ let g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#7aa65e');g.addColorSt
 for(let i=0;i<180;i++){const gx=(i*137+21)%W,gy=(i*89+31)%H;ellipse(gx,gy,8+(i%4)*3,3+(i%3),i%2?'#b8cf7733':'#204e302b')}
 round(270,95,500,145,18,'#674a32');round(286,110,468,128,12,'#b48a55');round(305,128,430,105,8,'#704f35');round(335,145,370,72,5,'#d3b47d');round(380,155,240,52,5,'#725137');
 for(let i=0;i<11;i++)round(300+i*39,114,6,118,2,'#785537');
-drawForge();drawCustomer();drawPlayer(x,y);
-if(phase==='forge'&&Math.hypot(x-420,y-410)<90){text('🔥',420,280,32,'#fff0a0')}
+ctx.save();ctx.translate(80,-110);drawForge();ctx.restore();ctx.save();ctx.translate(-250,0);drawCustomer();ctx.restore();drawPlayer(x,y);
+if(phase==='forge'&&Math.hypot(x-500,y-300)<90){text('🔥',500,170,32,'#fff0a0')}
 ctx.restore()}
 function showToast(t){toastText=t;$('toast').textContent=t;$('toast').classList.add('show');toastUntil=performance.now()+1400}
-function updateUI(){ $('coins').textContent='🪙 '+coins+' akçe';if(phase==='forge'){$('hint').textContent='Ocağa yürü, kılıcı otomatik döv!';$('status').innerHTML='⚒️ Ocağa git<small>Yaklaşınca otomatik dövülür</small>'}else{$('hint').textContent='Müşteriye yürü, kılıcı otomatik teslim et!';$('status').innerHTML='📦 Müşteriye git<small>Yaklaşınca otomatik teslim edilir</small>'}}
-function auto(){if(phase==='forge'&&Math.hypot(x-420,y-410)<88&&performance.now()>forgingUntil){forgingUntil=performance.now()+2200;stock++;phase='deliver';showToast('⚒️ Kılıç dövüldü!');updateUI()}if(phase==='deliver'&&stock>0&&Math.hypot(x-750,y-500)<78){stock--;coins+=10;phase='forge';showToast('🪙 Kılıç teslim edildi! +10 akçe');updateUI()}}
+function updateUI(){ $('coins').textContent='🪙 '+coins+' akçe';if(phase==='forge'){$('hint').textContent='Ocağa yürü, kılıcı otomatik döv!';$('status').innerHTML='⚒️ Ocağa git<small>Yaklaşınca otomatik dövülür</small>'}else{$('hint').textContent='Öndeki müşteriye götür; otomatik teslim et!';$('status').innerHTML='📦 Müşteriye git<small>Yaklaşınca otomatik teslim edilir</small>'}}
+function auto(){if(phase==='forge'&&Math.hypot(x-500,y-300)<88&&performance.now()>forgingUntil){forgingUntil=performance.now()+2200;stock++;phase='deliver';showToast('⚒️ Kılıç dövüldü!');updateUI()}if(phase==='deliver'&&stock>0&&Math.hypot(x-500,y-500)<78){stock--;coins+=10;phase='forge';showToast('🪙 Kılıç teslim edildi! +10 akçe');updateUI()}}
 function frame(ts){const dt=Math.min(.04,(ts-last)/1000||0);last=ts;const len=Math.hypot(joy.x,joy.y);if(len>.05){x=Math.max(35,Math.min(W-35,x+joy.x*220*dt));y=Math.max(185,Math.min(H-30,y+joy.y*220*dt));walk+=dt;if(Math.abs(joy.x)>.08)facing=joy.x>0?1:-1}auto();drawWorld();if(ts>toastUntil)$('toast').classList.remove('show');requestAnimationFrame(frame)}
 const joyEl=$('joy');function move(e){const r=joyEl.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),max=r.width*.32,len=Math.hypot(dx,dy),k=len>max?max/len:1;joy.x=dx*k/max;joy.y=dy*k/max;$('stick').style.transform='translate(calc(-50% + '+dx*k+'px),calc(-50% + '+dy*k+'px))'}
 joyEl.addEventListener('pointerdown',e=>{pointer=e.pointerId;joyEl.setPointerCapture(pointer);move(e)});joyEl.addEventListener('pointermove',e=>{if(e.pointerId===pointer)move(e)});function end(e){if(e.pointerId!==pointer)return;pointer=null;joy.x=joy.y=0;$('stick').style.transform='translate(-50%,-50%)'}joyEl.addEventListener('pointerup',end);joyEl.addEventListener('pointercancel',end);
