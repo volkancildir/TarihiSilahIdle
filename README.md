@@ -1,0 +1,2 @@
+# TarihiSilahIdle
+Idle silah oyunu
