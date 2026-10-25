@@ -134,6 +134,7 @@ function manualHammer(f){
  if(!master)return;
  let o=f.order;
  if(!o){
+   if(master.task){toast('Önce mevcut dövme işini tamamla.');return}
    const waiting=orders.filter(q=>q.state==='new').sort((a,b)=>a.cust.left-b.cust.left)[0];
    if(!waiting){toast('Bu örs için henüz sipariş yok. Bekleyen müşterinin silahını seç.');return}
    o=waiting;o.state='forging';o.forge=f;o.p=0;f.order=o;
