@@ -122,6 +122,7 @@ function manualHammer(f){
    if(!waiting){toast('Bu örs için henüz sipariş yok. Bekleyen müşterinin silahını seç.');return}
    o=waiting;o.state='forging';o.forge=f;o.p=0;f.order=o;
  }
+ if(o.state==='ready'&&!master.task){o.carrier=master;master.task={t:'toPick',order:o,forge:o.forge};const p=pick(o.forge);master.path=route(master.x,master.y,p[0],p[1]);if(!master.path.length)arrive(master);toast('Kılıç hazır! Alıp müşteriye götürüyorsun.');return}
  if(o.state!=='forging')return;
  const autoSmith=workers.find(w=>w.role==='smith'&&w.task&&w.task.order===o);
  if(autoSmith){o.p=Math.min(WEAPONS[o.weapon].time,o.p+.42*hammerMul());sparks(f.x,128,12);float('ÇEKİÇ DESTEĞİ!',f.x,112,'#ffd36b');if(o.p>=WEAPONS[o.weapon].time){o.state='ready';o.readyAge=0;sparks(f.x,126,18);autoSmith.task=null;autoSmith.hamAng=null}return}
