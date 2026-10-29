@@ -30,6 +30,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          # GitHub App lacks the Workflows permission, so leave this one file for a separate update.
+          git reset -- .github/workflows/android.yml
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
