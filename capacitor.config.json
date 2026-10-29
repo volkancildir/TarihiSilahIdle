@@ -1,0 +1,12 @@
+{
+  "appId": "com.orsdukkani.idle",
+  "appName": "Örs Dükkanı",
+  "webDir": "www",
+  "backgroundColor": "#141b24",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
