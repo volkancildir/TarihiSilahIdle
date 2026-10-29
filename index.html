@@ -1,1 +1,72 @@
-
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#141b24">
+<title>Örs Dükkanı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@700;800&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/skin-wood.css">
+<link rel="stylesheet" href="css/skin-parch.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 9h20c0 4-3 6-7 6v3h5v3H9v-3h5v-3C9 15 6 13 3 9z" fill="#aab6c4" stroke="#0f1620" stroke-width="1.4" stroke-linejoin="round"/><path d="M23 9l6 2.4c-1 2-3.4 3.4-6 3.6z" fill="#8795a5" stroke="#0f1620" stroke-width="1.4" stroke-linejoin="round"/><rect x="8" y="24" width="14" height="5" rx="1.5" fill="#8b5a2b" stroke="#0f1620" stroke-width="1.4"/></svg>
+      <h1>Örs Dükkanı</h1>
+    </div>
+    <div class="purse">
+      <svg class="coin" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#e2a93b" stroke="#9a6a14"/><circle cx="8" cy="8" r="4.2" fill="none" stroke="#9a6a14" stroke-width="1.2"/></svg>
+      <span id="gold" class="gold">0</span>
+      <span id="rate" class="rate"></span>
+    </div>
+    <button id="btn-set" class="icon-btn" type="button" aria-label="Ayarlar" aria-expanded="false" aria-controls="settings">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm8.2 4.7v-2.4l-2.1-.5a6.6 6.6 0 0 0-.7-1.7l1.1-1.9-1.7-1.7-1.9 1.1a6.6 6.6 0 0 0-1.7-.7l-.5-2.1h-2.4l-.5 2.1c-.6.2-1.2.4-1.7.7L6.2 5.3 4.5 7l1.1 1.9c-.3.5-.5 1.1-.7 1.7l-2.1.5v2.4l2.1.5c.2.6.4 1.2.7 1.7L4.5 17l1.7 1.7 1.9-1.1c.5.3 1.1.5 1.7.7l.5 2.1h2.4l.5-2.1c.6-.2 1.2-.4 1.7-.7l1.9 1.1 1.7-1.7-1.1-1.9c.3-.5.5-1.1.7-1.7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </button>
+    <div id="settings" class="settings" hidden>
+      <label class="set-row"><input id="set-music" type="checkbox"> <span>Müzik</span></label>
+      <label class="set-row"><input id="set-sound" type="checkbox"> <span>Ses efektleri</span></label>
+      <label class="set-row"><input id="set-haptic" type="checkbox"> <span>Titreşim</span></label>
+      <label class="set-row"><input id="set-notify" type="checkbox"> <span>Bildirimler</span></label>
+      <label class="set-row"><span>Görünüm</span> <select id="set-skin"><option value="parch">Parşömen</option><option value="classic">Klasik</option><option value="wood">Demir &amp; Ahşap</option></select></label>
+      <label class="set-row"><span>Dil / Language</span> <select id="set-lang"><option value="tr">Türkçe</option><option value="en">English</option></select></label>
+      <div class="set-row reset-row">
+        <button id="reset" class="ghost" type="button">Oyunu sıfırla</button>
+        <span id="reset-ask" hidden>Tüm ilerleme silinecek.
+          <button id="reset-yes" class="ghost warn" type="button">Evet, sil</button>
+          <button id="reset-no" class="ghost" type="button">Vazgeç</button>
+        </span>
+      </div>
+    </div>
+  </header>
+  <section class="stage" aria-label="Dükkan">
+    <div class="frame">
+      <canvas id="cv" role="img" aria-label="Demirci dükkanı: ocaklar, tezgah ve bekleyen müşteriler"></canvas>
+      <div id="chips" class="chips"></div>
+      <div id="toast" class="toast" role="status" hidden></div>
+      <div id="fairhud" class="fairhud" hidden><span id="fh-t"></span><span id="fh-s"></span><span id="fh-c"></span><button id="fh-end" class="ghost" type="button">Bitir</button></div>
+    </div>
+    <button id="goal" class="goal" type="button" aria-label="Bölüm hedefleri">
+      <span class="g-top"><span id="g-chap" class="g-chap">Bölüm 1</span><span id="g-count" class="g-count"></span></span>
+      <span id="g-text" class="g-text"></span><span class="g-bar"><i id="g-fill"></i></span>
+    </button>
+    <p id="hint" class="hint" aria-live="polite"></p>
+    <div id="coach" class="coach" hidden><p id="coach-text"></p><button id="coach-skip" class="ghost" type="button">Rehberi geç</button></div>
+  </section>
+  <section class="panel" aria-label="Geliştirmeler">
+    <div class="tabbar"><div id="tabs" class="tabs" role="tablist"></div></div>
+    <div id="modebar" class="modebar" role="group" aria-label="Satın alma miktarı">
+      <span class="mlabel">Satın alma</span><button type="button" data-mode="1" class="on">×1</button><button type="button" data-mode="5">×5</button><button type="button" data-mode="max">Maks</button>
+    </div>
+    <div id="content" class="content"></div>
+  </section>
+</div>
+<div id="chapters" class="modal" hidden><div class="sheet big" role="dialog" aria-modal="true" aria-labelledby="ch-title"><h2 id="ch-title">Bölümler</h2><div id="ch-list" class="ch-list"></div><button id="ch-close" class="buy alt" type="button">Kapat</button></div></div>
+<div id="modal" class="modal" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="m-title"><h2 id="m-title"></h2><p id="m-text"></p><div id="m-btns" class="m-btns"></div></div></div>
+<script src="js/data.js"></script><script src="js/chapters.js"></script><script src="js/content.js"></script><script src="js/i18n.js"></script><script src="js/audio.js"></script><script src="js/art.js"></script><script src="js/game.js"></script><script src="js/services.js"></script><script src="js/ui.js"></script>
+</body>
+</html>
