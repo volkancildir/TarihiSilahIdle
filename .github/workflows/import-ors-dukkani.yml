@@ -1,4 +1,4 @@
-name: Import Örs Dükkanı ZIP
+name: Import Game ZIP
 on:
   workflow_dispatch:
 permissions:
@@ -21,6 +21,7 @@ jobs:
           unzip -q ors-dukkani.zip -d /tmp/ors-import
           test -d /tmp/ors-import/ors-dukkani/www
           cp -a /tmp/ors-import/ors-dukkani/. .
+          rm -f index.html
           rm -f ors-dukkani.zip
           echo "Files restored:"
           find www assets store tools docs .github -maxdepth 3 -type f 2>/dev/null | sort
@@ -32,6 +33,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Import complete Örs Dükkanı project from ZIP"
+            git commit -m "Import complete game project from ZIP"
             git push
           fi
