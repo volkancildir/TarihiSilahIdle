@@ -1,0 +1,37 @@
+name: Import Örs Dükkanı ZIP
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Check archive
+        run: |
+          test -f ors-dukkani.zip || (echo "ors-dukkani.zip dosyası depo kökünde bulunamadı. Önce ZIP'i Add file > Upload files ile yükleyin." && exit 1)
+          unzip -t ors-dukkani.zip
+      - name: Restore project files
+        run: |
+          rm -rf /tmp/ors-import
+          mkdir -p /tmp/ors-import
+          unzip -q ors-dukkani.zip -d /tmp/ors-import
+          test -d /tmp/ors-import/ors-dukkani/www
+          cp -a /tmp/ors-import/ors-dukkani/. .
+          rm -f ors-dukkani.zip
+          echo "Files restored:"
+          find www assets store tools docs .github -maxdepth 3 -type f 2>/dev/null | sort
+      - name: Commit imported files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Import complete Örs Dükkanı project from ZIP"
+            git push
+          fi
