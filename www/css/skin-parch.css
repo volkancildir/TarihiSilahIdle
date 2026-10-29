@@ -1,0 +1,51 @@
+/* Orta çağ kitap / parşömen görünümü — yalnızca body.skin-parch iken geçerli. */
+body.skin-parch{background:radial-gradient(120% 80% at 50% 0,#241912,#120c08)}
+.skin-parch .panel,.skin-parch .sheet,.skin-parch .goal{
+  --panel:#ecdcb6; --panel-2:#e0cb9c; --line:#b99a62; --ink:#3a2816; --ink-dim:#6f5535;
+  --brass-hi:#9a5b10; --ok:#2f6b2f; --bad:#a3301f; color:var(--ink)}
+.skin-parch .panel{border:3px solid #5a3b1d;border-radius:14px;box-shadow:inset 0 0 0 2px #c9a96a,inset 0 0 40px rgba(120,80,30,.35),0 8px 24px rgba(0,0,0,.55);
+  background:radial-gradient(120% 90% at 30% 0,#f3e6c4,#e3cf9f)}
+.skin-parch .tabbar{background:linear-gradient(#5a3b1d,#3d2713);border-bottom:3px solid #2a1a0c}
+.skin-parch .tab{color:#d9c08c;font-family:var(--font-display);font-size:15px;letter-spacing:.04em;border-bottom-width:4px}
+.skin-parch .tab[aria-selected="true"]{color:#fff1c9;background:linear-gradient(#7a5129,#573719);border-bottom-color:#f3c162}
+.skin-parch .modebar{background:#dcc695;border-bottom:1px solid #b99a62}
+.skin-parch .modebar button{background:#ecdcb6;border:2px solid #8a6a3a;color:#4a331b}
+.skin-parch .modebar button.on{background:linear-gradient(#8f2f22,#6a1e15);color:#ffe9bd;border-color:#4a130d}
+.skin-parch .mlabel{color:#6f5535}
+.skin-parch .row{margin:8px 10px;padding:10px 12px;border:2px solid #8a6a3a;border-radius:6px;
+  background:linear-gradient(#f4e8c8,#e8d6a8);box-shadow:inset 0 0 0 2px #f9efd2,0 2px 0 #a8863f}
+.skin-parch .row:first-child{border-top:2px solid #8a6a3a}
+.skin-parch .row.maxed{background:linear-gradient(#e3e8c0,#cfd9a0);border-color:#5f7f3a}
+.skin-parch .uico svg{width:28px;height:28px}
+.skin-parch .uico{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f9e6b0,#c79a45);border:3px double #6a4520;box-shadow:inset 0 0 6px rgba(80,40,0,.5)}
+.skin-parch .name{font-family:var(--font-display);font-size:18px;letter-spacing:.03em;color:#2e1d0e}
+.skin-parch .lv{background:#d2b87f;border-radius:4px;padding:1px 7px;color:#4a331b;font-weight:700}
+.skin-parch .sub{color:#5f482a}
+.skin-parch .pips{display:block;height:7px;margin-top:6px;border-radius:2px;background:#cdb27a;border:1px solid #8a6a3a;overflow:hidden}
+.skin-parch .pips i{display:block;height:100%;background:linear-gradient(90deg,#8f2f22,#c8523a);transition:width .3s}
+.skin-parch .row.maxed .pips i{background:linear-gradient(90deg,#4f7f3a,#86b560)}
+.skin-parch .buy{background:linear-gradient(#a53a2a,#74221a);color:#ffe9bd;border:2px solid #4a130d;box-shadow:0 3px 0 #3a0f09;border-radius:8px}
+.skin-parch .buy:not(:disabled):active{transform:translateY(3px);box-shadow:none}
+.skin-parch .buy:disabled{background:#d5bf8a;color:#8a7348;border:2px solid #b99a62;box-shadow:0 3px 0 #a8863f}
+.skin-parch .buy.max{background:transparent;color:#2f6b2f;border:0;box-shadow:none;font-family:var(--font-display);letter-spacing:.08em}
+.skin-parch .card,.skin-parch .ch,.skin-parch .qrow,.skin-parch .ach{border-color:#8a6a3a}
+.skin-parch .card,.skin-parch .ch{background:linear-gradient(#f4e8c8,#e8d6a8);border:2px solid #8a6a3a;box-shadow:inset 0 0 0 2px #f9efd2}
+.skin-parch .card h3{font-family:var(--font-display);color:#2e1d0e}
+.skin-parch .sec{color:#7a4a12;border-bottom:1px solid #b99a62}
+.skin-parch .goal{background:linear-gradient(#f4e8c8,#e8d6a8);border:2px solid #8a6a3a;box-shadow:inset 0 0 0 2px #f9efd2}
+.skin-parch .g-chap{color:#7a4a12}
+.skin-parch .g-bar,.skin-parch .qrow .p{background:#cdb27a}
+.skin-parch .sheet{background:radial-gradient(120% 90% at 30% 0,#f3e6c4,#e3cf9f);border:3px solid #5a3b1d;box-shadow:inset 0 0 0 2px #c9a96a,0 20px 50px #000a}
+.skin-parch .sheet h2{color:#2e1d0e}
+.skin-parch .m-btns .alt{background:#ecdcb6;color:#3a2816;border:2px solid #8a6a3a}
+.skin-parch .ghost{color:#5f482a;border-color:#8a6a3a}
+.skin-parch #cv{border:3px solid #5a3b1d;box-shadow:inset 0 0 0 2px #140d08,0 10px 30px rgba(0,0,0,.5)}
+.skin-parch .purse{background:linear-gradient(#4a3322,#2e2016);border:2px solid #8a6a3a}
+.skin-parch .coach .ghost,.skin-wood .coach .ghost{color:#f3e6cf;border-color:#c2ab88}
+
+@media (max-width:700px) and (orientation:portrait){.skin-parch .tab[aria-selected="true"]{border-top-color:#f3c162;border-bottom:0}.skin-parch .tabbar{border-top:3px solid #2a1a0c;border-bottom:0}}
+/* açık kartlarda (koleksiyon defteri dahil) koyu yazı */
+.skin-parch .card,.skin-parch .ch,.skin-parch .row{--ink:#3a2816;--ink-dim:#6f5535;--brass-hi:#9a5b10;--ok:#2f6b2f;color:var(--ink)}
+.skin-parch .coll-it{background:rgba(90,59,29,.12);color:#6f5535}
+.skin-parch .coll-it.got{background:rgba(143,47,34,.18);color:#3a2816;font-weight:700}

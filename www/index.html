@@ -43,6 +43,7 @@
       </div>
     </div>
   </header>
+
   <section class="stage" aria-label="Dükkan">
     <div class="frame">
       <canvas id="cv" role="img" aria-label="Demirci dükkanı: ocaklar, tezgah ve bekleyen müşteriler"></canvas>
@@ -52,21 +53,51 @@
     </div>
     <button id="goal" class="goal" type="button" aria-label="Bölüm hedefleri">
       <span class="g-top"><span id="g-chap" class="g-chap">Bölüm 1</span><span id="g-count" class="g-count"></span></span>
-      <span id="g-text" class="g-text"></span><span class="g-bar"><i id="g-fill"></i></span>
+      <span id="g-text" class="g-text"></span>
+      <span class="g-bar"><i id="g-fill"></i></span>
     </button>
     <p id="hint" class="hint" aria-live="polite"></p>
     <div id="coach" class="coach" hidden><p id="coach-text"></p><button id="coach-skip" class="ghost" type="button">Rehberi geç</button></div>
   </section>
+
   <section class="panel" aria-label="Geliştirmeler">
-    <div class="tabbar"><div id="tabs" class="tabs" role="tablist"></div></div>
+    <div class="tabbar">
+      <div id="tabs" class="tabs" role="tablist"></div>
+    </div>
     <div id="modebar" class="modebar" role="group" aria-label="Satın alma miktarı">
-      <span class="mlabel">Satın alma</span><button type="button" data-mode="1" class="on">×1</button><button type="button" data-mode="5">×5</button><button type="button" data-mode="max">Maks</button>
+      <span class="mlabel">Satın alma</span>
+      <button type="button" data-mode="1" class="on">×1</button>
+      <button type="button" data-mode="5">×5</button>
+      <button type="button" data-mode="max">Maks</button>
     </div>
     <div id="content" class="content"></div>
   </section>
 </div>
-<div id="chapters" class="modal" hidden><div class="sheet big" role="dialog" aria-modal="true" aria-labelledby="ch-title"><h2 id="ch-title">Bölümler</h2><div id="ch-list" class="ch-list"></div><button id="ch-close" class="buy alt" type="button">Kapat</button></div></div>
-<div id="modal" class="modal" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="m-title"><h2 id="m-title"></h2><p id="m-text"></p><div id="m-btns" class="m-btns"></div></div></div>
-<script src="js/data.js"></script><script src="js/chapters.js"></script><script src="js/content.js"></script><script src="js/i18n.js"></script><script src="js/audio.js"></script><script src="js/art.js"></script><script src="js/game.js"></script><script src="js/services.js"></script><script src="js/ui.js"></script>
+
+<div id="chapters" class="modal" hidden>
+  <div class="sheet big" role="dialog" aria-modal="true" aria-labelledby="ch-title">
+    <h2 id="ch-title">Bölümler</h2>
+    <div id="ch-list" class="ch-list"></div>
+    <button id="ch-close" class="buy alt" type="button">Kapat</button>
+  </div>
+</div>
+
+<div id="modal" class="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="m-title">
+    <h2 id="m-title"></h2>
+    <p id="m-text"></p>
+    <div id="m-btns" class="m-btns"></div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/chapters.js"></script>
+<script src="js/content.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/art.js"></script>
+<script src="js/game.js"></script>
+<script src="js/services.js"></script>
+<script src="js/ui.js"></script>
 </body>
 </html>

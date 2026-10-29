@@ -1,0 +1,45 @@
+/* Demir & Ahşap görünümü — yalnızca body.skin-wood iken geçerli. Ayarlar > Görünüm > Klasik ile kapanır. */
+.uico,.pips{display:none}
+body.skin-wood{
+  --bg:#1a120c; --panel:#2a1d14; --panel-2:#38271a; --line:#5a4129;
+  --ink:#f3e6cf; --ink-dim:#c2ab88;
+  background:radial-gradient(120% 80% at 50% 0,#2b1c11,#150e09);
+}
+.skin-wood .panel{border:2px solid #6b4a2a;border-radius:14px;box-shadow:inset 0 0 0 2px #1a120c,0 8px 24px rgba(0,0,0,.5);
+  background:repeating-linear-gradient(90deg,#2d2016 0 38px,#2a1d14 38px 76px)}
+.skin-wood .tabbar{background:linear-gradient(#4a3322,#32221a);border-bottom:2px solid #1a120c;box-shadow:0 2px 0 #6b4a2a}
+.skin-wood .tab{color:#c2ab88;text-shadow:0 1px 0 #000;border-bottom-width:4px}
+.skin-wood .tab[aria-selected="true"]{color:#ffe3a1;background:linear-gradient(#5a4129,#3e2b1b);border-bottom-color:var(--brass-hi)}
+.skin-wood .purse{background:linear-gradient(#4a3322,#2e2016);border:2px solid #8a6a3a;box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.skin-wood .gold{color:#ffe3a1;text-shadow:0 1px 0 #000}
+.skin-wood .icon-btn,.skin-wood .modebar button{background:linear-gradient(#4a3322,#32221a);border:2px solid #6b4a2a;color:#e8d3a8}
+.skin-wood .modebar{border-bottom:1px solid #1a120c;background:rgba(0,0,0,.18)}
+.skin-wood .modebar button.on{background:linear-gradient(var(--brass-hi),var(--brass-lo));color:var(--brass-ink);border-color:#fff3;box-shadow:0 0 10px rgba(243,193,98,.4)}
+.skin-wood .row{margin:8px 10px;padding:10px 12px;border:2px solid #6b4a2a;border-radius:12px;
+  background:linear-gradient(#3e2c1d,#2f2117);box-shadow:inset 0 1px 0 #7a5a38,0 3px 0 #140d08}
+.skin-wood .row:first-child{border-top:2px solid #6b4a2a}
+.skin-wood .row.maxed{border-color:#5f8f5f;background:linear-gradient(#2f3a26,#232c1c)}
+.skin-wood .uico svg{width:28px;height:28px}
+.skin-wood .uico{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;font-size:25px;
+  background:radial-gradient(circle at 35% 30%,#6b6f78,#2c3038);border:2px solid #9aa3ad;box-shadow:inset 0 0 6px #000,0 2px 0 #000}
+.skin-wood .name{font-family:var(--font-display);font-size:18px;letter-spacing:.03em;color:#ffe9bd}
+.skin-wood .lv{font-family:var(--font-body);background:#140d08;border-radius:999px;padding:1px 8px;color:#e8d3a8}
+.skin-wood .pips{display:block;height:7px;margin-top:6px;border-radius:4px;background:#140d08;border:1px solid #5a4129;overflow:hidden}
+.skin-wood .pips i{display:block;height:100%;background:linear-gradient(90deg,#c77d1f,#ffd36e);border-radius:3px;transition:width .3s}
+.skin-wood .row.maxed .pips i{background:linear-gradient(90deg,#5f9f5f,#a9e0a0)}
+.skin-wood .buy{border:2px solid #fff4;box-shadow:0 3px 0 #7a4f10,0 0 0 1px #000;border-radius:11px}
+.skin-wood .buy:not(:disabled):active{transform:translateY(3px);box-shadow:0 0 0 #7a4f10,0 0 0 1px #000}
+.skin-wood .buy:not(:disabled){animation:glowb 2s ease-in-out infinite}
+.skin-wood .buy:disabled{background:#2a1d14;color:#8d7a5c;border:2px solid #4a3322;box-shadow:0 3px 0 #140d08}
+.skin-wood .buy.max{box-shadow:none;border:0;animation:none;font-family:var(--font-display);letter-spacing:.08em}
+@keyframes glowb{50%{filter:brightness(1.12)}}
+.skin-wood .card,.skin-wood .ch,.skin-wood .goal{border:2px solid #6b4a2a;background:linear-gradient(#3e2c1d,#2f2117);box-shadow:inset 0 1px 0 #7a5a38}
+.skin-wood .card h3{font-family:var(--font-display);color:#ffe3a1;letter-spacing:.04em}
+.skin-wood .sec{color:#e2a93b;border-bottom:1px solid #5a4129;padding-bottom:3px}
+.skin-wood .sheet{border:3px solid #8a6a3a;background:linear-gradient(#3e2c1d,#2a1d14);box-shadow:inset 0 0 0 2px #140d08,0 20px 50px #000a}
+.skin-wood #cv{border:3px solid #6b4a2a;box-shadow:inset 0 0 0 2px #140d08,0 10px 30px rgba(0,0,0,.5)}
+.skin-wood .goal .g-bar,.skin-wood .qrow .p{background:#140d08}
+@media (prefers-reduced-motion:reduce){.skin-wood .buy:not(:disabled){animation:none}}
+
+@media (max-width:700px) and (orientation:portrait){.skin-wood .tab[aria-selected="true"]{border-top-color:#f3c162;border-bottom:0}.skin-wood .tabbar{border-top:3px solid #2a1a0c;border-bottom:0}}
+.skin-wood .coll-it{color:#c2ab88}.skin-wood .coll-it.got{color:#ffe9bd}
