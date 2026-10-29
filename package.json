@@ -1,0 +1,16 @@
+{
+  "name": "ors-dukkani",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Örs Dükkanı: demirci idle oyunu (Capacitor ile Android paketi)",
+  "scripts": {
+    "serve": "python3 -m http.server 8080 -d www",
+    "assets:make": "python3 tools/make-assets.py",
+    "assets:android": "capacitor-assets generate --android",
+    "android:add": "cap add android && node tools/patch-android.js",
+    "android:sync": "cap sync android",
+    "android:open": "cap open android",
+    "preview": "node tools/build-preview.js",
+    "check": "node tools/check.js"
+  }
+}
