@@ -267,3 +267,25 @@ body,button,input,select{font-variant-numeric:lining-nums;font-feature-settings:
   .tab .dot{right:calc(50% - 23px);top:6px;width:10px;height:10px}
   .tabbar{padding-bottom:max(5px,env(safe-area-inset-bottom,0px))}
 }
+
+
+/* Android: geliştirme listesi yazıları ve satın alma alanları büyütüldü */
+@media (max-width:700px) and (orientation:portrait){
+  .row{padding:11px 12px!important;gap:10px!important}
+  .name{font-size:18px!important;line-height:1.25}
+  .lv{font-size:13px!important}
+  .sub{font-size:14px!important;line-height:1.4}
+  .buy{min-height:54px!important;min-width:100px!important;font-size:17px!important;padding:0 12px!important}
+  .buy .x{font-size:14px!important}
+  .card{padding:14px!important;gap:8px 12px}
+  .card h3{font-size:18px!important}
+  .card p{font-size:14px!important;line-height:1.4}
+  .card .buy,.card .buy.small,.qrow .buy{width:100px!important;min-width:100px!important;min-height:52px!important;font-size:16px!important}
+  .sec{font-size:16px!important}
+  .qrow{padding:12px!important;gap:7px 12px}
+  .qrow .t,.ach .t{font-size:16px!important}
+  .ach .d,.ach .r{font-size:14px!important}
+  .kv{font-size:15px!important}
+  .modebar button{min-height:38px!important;font-size:14px!important}
+  .mlabel{font-size:14px!important}
+}
