@@ -248,3 +248,22 @@ body,button,input,select{font-variant-numeric:lining-nums;font-feature-settings:
 .row.hi{grid-template-columns:auto minmax(0,1fr) auto}
 .card.full .buy,.card.full .buy.small{width:auto;min-width:0;padding:0 14px;justify-self:start}
 .m-btns .buy{width:100%;min-width:0}
+
+
+/* Android: alt gezinme sekmelerini daha rahat okunur ve dokunulur yap */
+@media (max-width:700px) and (orientation:portrait){
+  .tabbar{min-height:78px}
+  .tabs{align-items:stretch}
+  .tab{
+    min-height:74px!important;
+    padding:7px 3px 6px!important;
+    gap:4px!important;
+    font-size:13px!important;
+    line-height:1.15!important;
+    font-weight:800!important;
+    white-space:normal;
+  }
+  .ti,.ti svg{width:29px!important;height:29px!important;flex:none}
+  .tab .dot{right:calc(50% - 23px);top:6px;width:10px;height:10px}
+  .tabbar{padding-bottom:max(5px,env(safe-area-inset-bottom,0px))}
+}
