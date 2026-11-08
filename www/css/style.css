@@ -357,3 +357,9 @@ body,button,input,select{font-variant-numeric:lining-nums;font-feature-settings:
   .qrow .t,.ach .t{font-size:16px!important}
   .ach .d,.ach .r{font-size:14px!important}
 }
+
+
+/* Alt menü başlıkları: Ekip, Dükkan vb. +3 kademe */
+@media (max-width:700px) and (orientation:portrait){
+  .tab{font-size:16px!important}
+}
